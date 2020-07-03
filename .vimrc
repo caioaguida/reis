@@ -1,0 +1,1 @@
+/home/silenux/.config/nvim/init.vim

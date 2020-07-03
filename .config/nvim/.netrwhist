@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/usr/share/conky'
+let g:netrw_dirhist_2='/home/silenux/.i3'
+let g:netrw_dirhist_1='/home/silenux/.config/nvim'

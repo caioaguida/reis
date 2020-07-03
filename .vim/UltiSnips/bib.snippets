@@ -1,0 +1,137 @@
+
+global !p
+def fix_indent(snip):
+    vim.eval('feedkeys("\<c-f>")')
+endglobal
+
+post_expand "fix_indent(snip)"
+snippet bibitem "Cria um item bibliográfico genérico" b
+@$1{${2:sobrenome}${3:ano},
+	author		=	{${4:prenome} $2},
+	year		=	{$3},
+	$0
+}
+
+
+endsnippet
+
+
+global !p
+def fix_indent(snip):
+    vim.eval('feedkeys("\<c-f>")')
+endglobal
+
+post_expand "fix_indent(snip)"
+snippet article "Formata a base para a citação de um artigo" b 
+@article{${1:author}${2:ano},
+	author		=	{${4:prenome} $1},
+	year		=	{$2},
+	title		=	{$3},
+	journal		=	{$5},
+	volume		=	{$6},
+	number		=	{$7},
+	pages		=	{$8--$9},
+} 
+
+$0
+endsnippet
+
+global !p
+def fix_indent(snip):
+    vim.eval('feedkeys("\<c-f>")')
+endglobal
+
+post_expand "fix_indent(snip)"
+snippet book "Formata a base para a citação de um livro" b
+@book{${1:author}${2:ano},
+	author		=	{${4:prenome} $1},
+	year		=	{$2},
+	title		=	{$3},
+	publisher	=	{$5},
+	address		=	{$6},
+}
+
+$0
+endsnippet
+
+global !p
+def fix_indent(snip):
+    vim.eval('feedkeys("\<c-f>")')
+endglobal
+
+post_expand "fix_indent(snip)"
+snippet inbook "Formata a base para a citação de um pedaço de livro" b
+@inbook{${1:author}${2:ano},
+	author		=	{${4:prenome} $1},
+	year		=	{$2},
+	title		=	{$3},
+	booktitle	=	{$5},
+	editor		=	{$6},
+	publisher	=	{$7},
+	address		=	{$8},
+	pages		=	{$9--$10},
+}
+
+$0
+endsnippet
+
+snippet author "Cria espaço para author" b
+author		=	{$1},
+$0
+endsnippet
+
+snippet title "Cria espaço para title" b
+title		=	{$1},
+$0
+endsnippet
+
+snippet year "Cria espaço para year" b
+year		=	{$1},
+$0
+endsnippet
+
+snippet publisher "Cria espaço para publisher" b
+publisher	=	{$1},
+$0
+endsnippet
+
+snippet address "Cria espaço para address" b
+address		=	{$1},
+$0
+endsnippet
+
+snippet editor "Cria espaço para editor" b
+editor		=	{$1},
+$0
+endsnippet
+
+snippet booktitle "Cria espaço para booktitle" b
+booktitle	=	{$1},
+$0
+endsnippet
+
+snippet journal "Cria espaço para journal" b
+journal		=	{$1},
+$0
+endsnippet
+
+snippet volume "Cria espaço para volume" b
+volume		=	{$1},
+$0
+endsnippet
+
+snippet number "Cria espaço para number" b
+number		=	{$1},
+$0
+endsnippet
+
+snippet pages "Cria espaço para pages" b
+pages		=	{$1--$2},
+$0
+endsnippet
+
+snippet doi "Cria espaço para doi" b
+doi		=	{$1},
+$0
+endsnippet
+

@@ -1,0 +1,21 @@
+[Desktop Entry]
+DefaultProfile=Gruv.profile
+
+[DownloadDialog Settings]
+Height 768=438
+Width 1366=700
+
+[Favorite Profiles]
+Favorites=Vivendo.profile,Programando.profile,Gruv.profile
+
+[KonsoleWindow]
+ShowMenuBarByDefault=false
+
+[MainWindow]
+Height 1080=1030
+Height 768=744
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAAApYAAALOAAAABAAAAAQAAAAIAAAACPwAAAAA
+ToolBarsMovable=Disabled
+Width 1366=1366
+Width 1920=939

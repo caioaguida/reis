@@ -1,0 +1,376 @@
+global !p
+def fix_indent(snip):
+    vim.eval('feedkeys("\<c-f>")')
+endglobal
+
+post_expand "fix_indent(snip)"
+snippet it "\item" m
+\\item ${1:${VISUAL}}
+endsnippet
+
+snippet section "Creates a section" b
+\section{$1}
+
+$0
+endsnippet
+
+snippet env "Cria um ambiente qualquer" b
+\begin{$1}
+$0
+\end{$1}
+endsnippet
+
+snippet inpar "Cria ambiente inparaenum" b
+\begin{inparaenum}
+	\item $0
+\end{inparaenum}
+endsnippet
+
+snippet compact "Cria ambiente compatenum" b
+\begin{compactenum}
+	\item $1
+\end{compactenum}
+endsnippet
+
+snippet figura "Formula uma figura em LaTeX" b
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=\textwidth]{$1}
+	\caption{$2}
+	\label{fig:$3}
+\end{figure}
+endsnippet
+
+snippet tabela "Cria uma tabela" b
+\begin{table}[!h]
+\begin{center}
+%\resizebox{\textwidth}{!}{%%
+\begin{tabular}{${1: |c|}}
+\hline
+% \multicolumn{}{}{}\\\\
+${4:teste}	\\\\
+\hline
+\end{tabular}
+%}
+\caption{$2}
+\label{tab:$3}
+\end{center}
+\end{table}
+endsnippet
+
+# Templates básicos
+
+snippet docclass "\documentclass[Y]{X}" b
+\documentclass[$2]{$1}
+
+\begin{document}
+$0
+\end{document}
+endsnippet
+
+snippet package "\usepackage[Y]{X}" b
+\usepackage[$2]{$1}
+$0
+endsnippet
+
+# Templates imensos
+
+snippet docpaper "Cria template de dissertação, paper etc" b
+\documentclass[
+	12pt,
+	openright,
+	twoside,
+	a4paper,
+	brazil,
+	%chapter=TITLE,
+	%section=TITLE,
+	%subsection=TITLE,
+	]{abntex2}
+
+
+\usepackage[no-math]{fontspec}
+
+% Polyglossia, especialmente sânscrito 
+\usepackage{polyglossia}
+\setmainlanguage{brazil}
+\setotherlanguages{sanskrit, english, greek, german, french}
+% definições
+\setmainfont[BoldFont={Brill Bold},ItalicFont={Brill Italic}]{Brill}
+\newfontfamily
+\greekfont[Script=Greek, BoldFont={Brill Bold},ItalicFont={Brill Italic}]{Brill}
+
+% Formatação
+\usepackage{qtree}
+\usepackage{indentfirst}
+\usepackage{paralist} % Listas mais elegantes
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{microtype} % para melhorias de justificação
+\usepackage[normalem]{ulem} % Sublinhado
+\usepackage{linguex} % Exemplos linguísticos bem numerados
+\usepackage{multicol}
+\usepackage{titlesec}
+%\renewcommand{\baselinestretch}{1.5} 
+\renewcommand{\ABNTEXchapterfont}{\bfseries}
+\renewcommand{\ABNTEXchapterfontsize}{\normalsize}
+\titleformat*{\section}{\normalsize\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\usepackage{hyphenat}
+
+
+\makeindex
+\makeatletter
+\hypersetup{
+     	pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		colorlinks=true,
+    	linkcolor=blue,
+    	citecolor=blue,
+    	filecolor=magenta,
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+\makeatletter
+\setlength{\@fptop}{5pt} 
+\makeatother
+% Possibilita criação de Quadros e Lista de quadros.
+% Ver https://github.com/abntex/abntex2/issues/176
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space} 
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+
+\setfloatlocations{quadro}{hbtp} 
+\setlength{\parindent}{1.3cm}
+\setlength{\parskip}{0.2cm}
+
+%Informações Gerais
+\titulo{${1:Título provisório}}
+\autor{Caio Borges Aguida Geraldes}
+\local{São Paulo}
+\data{2019}
+\orientador{${2:José Marcos Mariani de Macedo}}
+\instituicao{%
+	Universidade de São Paulo
+  	\par
+	Faculdade de Filosofia, Letras e Ciências Humanas
+	\par
+	Programa de Pós-Graduação em Letras Clássicas}
+\preambulo{${3:Preâmbulo provisório}}
+
+\setlrmarginsandblock{3cm}{2cm}{*}
+\setulmarginsandblock{3cm}{2cm}{*}
+
+%Bibliografia
+
+\usepackage[
+		backend=biber,
+		style=abnt, 
+		scbib,
+		repeatfields,
+		ittitles,
+		sccite,
+		indent,
+		sorting=nyt,
+		giveninits,
+		extrayear,
+		pretty,
+		autolang=hyphen,
+		backref
+]{biblatex}
+\addbibresource{biblio.bib}
+
+\begin{document}
+
+\pretextual
+
+\frenchspacing 
+
+\imprimircapa
+
+\imprimirfolhaderosto
+
+
+% Epígrafe
+%\begin{epigrafe}
+%\end{epigrafe}
+
+% resumo em português
+% \setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+% \begin{resumo}
+%\textbf{Palavras-chave}:  
+%\end{resumo}
+
+
+% inserir lista de tabelas
+%\pdfbookmark[0]{\listtablename}{lot}
+%\listoftables*
+%\cleardoublepage
+
+
+%\begin{siglas}
+%	\item[Plat.]		Platão
+%\end{siglas}
+%\begin{simbolos}
+%	\item[VOC]		vocativo
+%\end{simbolos}
+
+\pdfbookmark[0]{\contentsname}{toc}
+\settocdepth{chapter}
+\tableofcontents*
+\cleardoublepage
+
+
+\textual
+\DoubleSpacing
+
+\postextual
+\OnehalfSpacing
+
+\printbibliography
+
+\printindex
+
+%\begin{anexosenv}
+%
+%\partanexos
+%
+%\end{anexosenv}
+
+\end{document}
+
+endsnippet
+
+snippet docarticle "Cria template de artigo" b
+\documentclass[
+	12pt,
+	oneside,
+	a4paper,
+	article,
+	brazil,
+	%chapter=TITLE,
+	%section=TITLE,
+	%subsection=TITLE,
+]{abntex2}
+
+\usepackage[no-math]{fontspec}
+
+% Polyglossia, especialmente sânscrito 
+\usepackage{polyglossia}
+\setmainlanguage{brazil}
+\setotherlanguages{sanskrit, english, greek, german, french}
+% definições
+\setmainfont[BoldFont={Brill Bold},ItalicFont={Brill Italic}]{Brill}
+\newfontfamily
+\greekfont[Script=Greek, BoldFont={Brill Bold},ItalicFont={Brill Italic}]{Brill}
+
+% Formatação
+\usepackage{qtree}
+\usepackage{indentfirst}
+\usepackage{paralist} % Listas mais elegantes
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{microtype} % para melhorias de justificação
+\usepackage[normalem]{ulem} % Sublinhado
+\usepackage{linguex} % Exemplos linguísticos bem numerados
+\usepackage{multicol}
+\usepackage{titlesec}
+%\renewcommand{\baselinestretch}{1.5} 
+\renewcommand{\ABNTEXchapterfont}{\bfseries}
+\renewcommand{\ABNTEXchapterfontsize}{\normalsize}
+\titleformat*{\section}{\normalsize\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\usepackage{hyphenat}
+
+
+\makeindex
+\makeatletter
+\hypersetup{
+     	pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		colorlinks=true,
+    	linkcolor=blue,
+    	citecolor=blue,
+    	filecolor=magenta,
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+\makeatletter
+\setlength{\@fptop}{5pt} 
+\makeatother
+% Possibilita criação de Quadros e Lista de quadros.
+% Ver https://github.com/abntex/abntex2/issues/176
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space} 
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+
+\setfloatlocations{quadro}{hbtp} 
+\setlength{\parindent}{1.3cm}
+\setlength{\parskip}{0.2cm}
+
+%Informações Gerais
+\titulo{${1:Título provisório}}
+\autor{Caio Borges Aguida Geraldes}
+\local{São Paulo}
+\data{2019}
+\orientador{${2:José Marcos Mariani de Macedo}}
+\instituicao{%
+	Universidade de São Paulo
+  	\par
+	Faculdade de Filosofia, Letras e Ciências Humanas
+	\par
+	Programa de Pós-Graduação em Letras Clássicas}
+\preambulo{${3:Preâmbulo provisório}}
+
+\setlrmarginsandblock{3cm}{2cm}{*}
+\setulmarginsandblock{3cm}{2cm}{*}
+
+%Bibliografia
+
+\usepackage[
+		backend=biber,
+		style=abnt, 
+		scbib,
+		repeatfields,
+		ittitles,
+		sccite,
+		indent,
+		sorting=nyt,
+		giveninits,
+		extrayear,
+		pretty,
+		autolang=hyphen,
+		backref
+]{biblatex}
+\addbibresource{biblio.bib}
+
+
+endsnippet
+

@@ -1,0 +1,8 @@
+#! /bin/bash
+
+
+/home/silenux/.diogenes32/diogenes/perl/diogenes-server-kill.pl
+
+
+/home/silenux/.diogenes32/diogenes/perl/diogenes-server.pl
+

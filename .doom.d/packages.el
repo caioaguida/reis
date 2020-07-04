@@ -11,10 +11,11 @@
 (package! csv-mode)
 (package! AUCTeX)
 
-(package! ess)
+;; (package! ess)
 (package! ess-smart-underscore)
 (package! org-ref)
 (package! auto-complete)
+;; (package! mu4e)
 
 
 ;; To install a package directly from a remote git repo, you must specify a

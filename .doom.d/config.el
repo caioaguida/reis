@@ -8,6 +8,8 @@
 ;; clients, file templates and snippets.
 (setq user-full-name "Caio Borges Aguida Geraldes"
       user-mail-address "caioaguida@gmail.com")
+
+;; mu4e config
 (require 'mu4e)
 
 ;; use mu4e for e-mail in emacs
@@ -78,21 +80,52 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-gruvbox)
+(use-package doom-themes
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-gruvbox t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  (doom-themes-treemacs-config)
+
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+;; (setq doom-theme 'doom-gruvbox)
+;; (use-package doom-themes
+  ;; :config
+  ;; Global settings (defaults)
+  ;; (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        ;; doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  ;; (load-theme 'doom-gruvbox t)
+ 
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/.org/")
+
+
+
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 
 
 ;; Setting doom font:
-(setq doom-font (font-spec :family "DejaVu Sans Mono" :size 14))
+(require 'unicode-fonts)
+(unicode-fonts-setup)
+(setq doom-font (font-spec :family "NotoSansMono Nerd Font" :size 16))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
+
 ;;
 ;; - `load!' for loading external *.el files relative to this one
 ;; - `use-package!' for configuring packages
@@ -115,12 +148,39 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(mu4e-confirm-quit nil)
- '(mu4e-update-interval 12000)
- '(org-agenda-files
-   (quote
-    ("~/Documentos/Mestrado/master-data/plans.org" "~/org/todo.org" "~/.org/org-roam/org-basics.org")))
- '(send-mail-function (quote mailclient-send-it)))
+ '(ansi-color-names-vector
+   ["#21242b" "#ff6c6b" "#98be65" "#ECBE7B" "#51afef" "#c678dd" "#46D9FF" "#bbc2cf"])
+ '(fci-rule-color "#5B6268")
+ '(jdee-db-active-breakpoint-face-colors (cons "#1B2229" "#51afef"))
+ '(jdee-db-requested-breakpoint-face-colors (cons "#1B2229" "#98be65"))
+ '(jdee-db-spec-breakpoint-face-colors (cons "#1B2229" "#3f444a"))
+ '(objed-cursor-color "#ff6c6b")
+ '(package-selected-packages (quote (doom-themes)))
+ '(pdf-view-midnight-colors (cons "#bbc2cf" "#282c34"))
+ '(rustic-ansi-faces
+   ["#282c34" "#ff6c6b" "#98be65" "#ECBE7B" "#51afef" "#c678dd" "#46D9FF" "#bbc2cf"])
+ '(vc-annotate-background "#282c34")
+ '(vc-annotate-color-map
+   (list
+    (cons 20 "#98be65")
+    (cons 40 "#b4be6c")
+    (cons 60 "#d0be73")
+    (cons 80 "#ECBE7B")
+    (cons 100 "#e6ab6a")
+    (cons 120 "#e09859")
+    (cons 140 "#da8548")
+    (cons 160 "#d38079")
+    (cons 180 "#cc7cab")
+    (cons 200 "#c678dd")
+    (cons 220 "#d974b7")
+    (cons 240 "#ec7091")
+    (cons 260 "#ff6c6b")
+    (cons 280 "#cf6162")
+    (cons 300 "#9f585a")
+    (cons 320 "#6f4e52")
+    (cons 340 "#5B6268")
+    (cons 360 "#5B6268")))
+ '(vc-annotate-very-old-color nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -128,11 +188,28 @@
  ;; If there is more than one, they won't work right.
  )
 
+(setq org-export-coding-system 'utf-8)
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tarefas")
+         "* TODO %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/org/journal.org")
+         "* %?\nEntered on %U\n  %i\n  %a")))
+
+
 ;; Latex configuration
-(setq +latex-viewers '(zathura))
+;;
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
+
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
+
+(setq +latex-viewers '(zathura))
 (setq-default TeX-engine 'xetex)
 (setq-default TeX-PDF-mode t)
 
@@ -143,3 +220,8 @@
 (require 'pie-macs)
 
 
+;; Background transparency and color
+
+;; (set-background-color "#3d3d2b")
+(set-frame-parameter (selected-frame) 'alpha '(87 . 87))
+(put 'customize-themes 'disabled nil)

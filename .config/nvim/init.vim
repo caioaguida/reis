@@ -28,6 +28,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 "Plugin
 call plug#begin('~/.vim/plugged')
 Plug 'lervag/vimtex'
+Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/goyo.vim'
 Plug 'SirVer/ultisnips'
 Plug 'noahfrederick/vim-skeleton'

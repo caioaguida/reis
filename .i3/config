@@ -51,6 +51,8 @@ bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 exec --no-startup-id setxkbmap -layout "br,el" -variant ",polytonic" -option grp:shifts_toggle
+
+exec --no-startup-id picom -b --config /etc/xdg/picom.conf
 ################################################################################################
 
 # Screen brightness controls

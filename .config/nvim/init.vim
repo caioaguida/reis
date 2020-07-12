@@ -27,6 +27,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 "Plugin
 call plug#begin('~/.vim/plugged')
+Plug 'caioaguida/pievim'
 Plug 'lervag/vimtex'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/goyo.vim'
@@ -48,6 +49,7 @@ Plug 'vim-pandoc/vim-rmarkdown'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'scrooloose/nerdtree'
+
 call plug#end()
 
 
@@ -155,37 +157,37 @@ map <C-n> :NERDTreeToggle<CR>
 
 """ Gerenciador de teclados:
 	" Harvard-Kyoto
-	so ~/.vim/ie/hk.vim
-	autocmd FileType tex imap \\hk <Esc>:call ToggleHK()<CR>a
-	autocmd FileType tex nm \\hk :call ToggleHK()<CR>
-	" Grego
-	so ~/.vim/ie/grego.vim
-	autocmd FileType tex imap \\gr <Esc>:call ToggleGrego()<CR>a
-	autocmd FileType tex nm \\gr :call ToggleGrego()<CR>
-	" PIE
-	so ~/.vim/ie/pie.vim
-	autocmd FileType tex imap \\pie <Esc>:call TogglePIE()<CR>a
-	autocmd FileType tex nm \\pie :call TogglePIE()<CR>
-	" AV
-	so ~/.vim/ie/av.vim
-	autocmd FileType tex imap \\av <Esc>:call ToggleAV()<CR>a
-	autocmd FileType tex nm \\av :call ToggleAV()<CR>
-	" AVScript
-	so ~/.vim/ie/avscript.vim
-	autocmd FileType tex imap \\avs <Esc>:call ToggleAVScript()<CR>a
-	autocmd FileType tex nm \\avs :call ToggleAVScript()<CR>
-	" Osco
-	so ~/.vim/ie/osco.vim
-	autocmd FileType tex imap \\osc <Esc>:call ToggleOsco()<CR>a
-	autocmd FileType tex nm \\osc :call ToggleOsco()<CR>
-	" Hitita
-	so ~/.vim/ie/hit.vim
-	autocmd FileType tex imap \\hit <Esc>:call ToggleHitita()<CR>a
-	autocmd FileType tex nm \\hit :call ToggleHitita()<CR>
-	" HLuw
-	so ~/.vim/ie/hluv.vim
-	autocmd FileType tex imap \\hlu <Esc>:call ToggleHLuw()<CR>a
-	autocmd FileType tex nm \\hlu :call ToggleHLuw()<CR>
+	" so ~/.vim/ie/hk.vim
+	" autocmd FileType tex imap \\hk <Esc>:call ToggleHK()<CR>a
+	" autocmd FileType tex nm \\hk :call ToggleHK()<CR>
+	" " Grego
+	" so ~/.vim/ie/grego.vim
+	" autocmd FileType tex imap \\gr <Esc>:call ToggleGrego()<CR>a
+	" autocmd FileType tex nm \\gr :call ToggleGrego()<CR>
+	" " PIE
+	" so ~/.vim/ie/pie.vim
+	" autocmd FileType tex imap \\pie <Esc>:call TogglePIE()<CR>a
+	" autocmd FileType tex nm \\pie :call TogglePIE()<CR>
+	" " AV
+	" so ~/.vim/ie/av.vim
+	" autocmd FileType tex imap \\av <Esc>:call ToggleAV()<CR>a
+	" autocmd FileType tex nm \\av :call ToggleAV()<CR>
+	" " AVScript
+	" so ~/.vim/ie/avscript.vim
+	" autocmd FileType tex imap \\avs <Esc>:call ToggleAVScript()<CR>a
+	" autocmd FileType tex nm \\avs :call ToggleAVScript()<CR>
+	" " Osco
+	" so ~/.vim/ie/osco.vim
+	" autocmd FileType tex imap \\osc <Esc>:call ToggleOsco()<CR>a
+	" autocmd FileType tex nm \\osc :call ToggleOsco()<CR>
+	" " Hitita
+	" so ~/.vim/ie/hit.vim
+	" autocmd FileType tex imap \\hit <Esc>:call ToggleHitita()<CR>a
+	" autocmd FileType tex nm \\hit :call ToggleHitita()<CR>
+	" " HLuw
+	" so ~/.vim/ie/hluv.vim
+	" autocmd FileType tex imap \\hlu <Esc>:call ToggleHLuw()<CR>a
+	" autocmd FileType tex nm \\hlu :call ToggleHLuw()<CR>
 
 
 """" Python

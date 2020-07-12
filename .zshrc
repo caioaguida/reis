@@ -7,7 +7,8 @@ autoload -U promptinit
 
 # Core e Afins
 autoload -U colors && colors
-PS1="%B%{$fg[magenta]%}[%{$fg[cyan]%}%n%{$fg[red]%}@%{$fg[yellow]%}%M %{$fg[red]%}%(4~|%-2~.../%2~|%~)%{$fg[magenta]%}]%{$reset_color%}$%b "
+PS1="%B%{$fg[magenta]%}[%{$fg[cyan]%}%n%{$fg[red]%}@%{$fg[yellow]%}%M %{$fg[red]%}%(4~|%-2~.../%2~|%~)%{$fg[magenta]%}]%{$reset_color%}𐂀%b "
+# PS1 = "%B%{$fg[magenta]%}[]%{$reset_color}a%b "
 
 
 # History in cache directory:

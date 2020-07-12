@@ -1,8 +1,29 @@
+#+TITLE:   Config
+#+AUTHOR:  Caio Borges Aguida Geraldes (@silenus32)
+#+EMAIL:   caioaguida@protonmail.com
+#      _ _
+#  ___(_) | ___ _ __  _   _ ___
+# / __| | |/ _ \ '_ \| | | / __|
+# \__ \ | |  __/ | | | |_| \__ \
+# |___/_|_|\___|_| |_|\__,_|___/
+#
+
+
+* Information
+
+#+BEGIN_SRC elisp
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Caio Borges Aguida Geraldes"
       user-mail-address "caioaguida@gmail.com")
+#+END_SRC
 
+* Themes, fonts
+** Fonts
+
+The configuration bellow intends to present a workspace for a historical linguist. The package unicode-fonts (loaded at [[file:packages.el::unicode-fonts][packages.el]]) allows the diacritics and non-standard scripts to be properly displayed at the editor. To my knowledge, the only font that encompasses all the diacritics and scripts I use in my texts is Noto Sans Mono. I chose to use the version patched in the package [[https://www.nerdfonts.com/][Nerd Fonts]], the size is arbitrary.
+
+#+BEGIN_SRC elisp
 (if (daemonp)
     (add-hook 'after-make-frame-functions
         (lambda (frame)
@@ -14,6 +35,10 @@
 
   (setq doom-font (font-spec :family "NotoSansMono Nerd Font" :size 14))
 
+#+END_SRC
+
+** Theme
+#+BEGIN_SRC elisp
 (if (daemonp)
     (add-hook 'after-make-frame-functions
         (lambda (frame)
@@ -65,6 +90,12 @@
   ;; numbers are disabled. For relative line numbers, set this to `relative'.
   (setq display-line-numbers-type 'relative)
 
+#+END_SRC
+
+* Org-mode
+
+#+BEGIN_SRC elisp
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/.org/")
@@ -77,7 +108,11 @@
          "* TODO %?\n  %i\n  %a")
         ("j" "Journal" entry (file+datetree "~/org/journal.org")
          "* %?\nEntered on %U\n  %i\n  %a")))
+#+END_SRC
 
+* Custom Variables
+
+#+BEGIN_SRC elisp
 ;; (custom-set-variables)
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -124,6 +159,12 @@
  ;; If there is more than one, they won't work right.
  ;; )
 
+#+END_SRC
+
+* LaTeX
+
+#+BEGIN_SRC elisp
+
 ;; Latex configuration
 ;;
 (setq TeX-auto-save t)
@@ -141,6 +182,13 @@
 (setq-default TeX-engine 'xetex)
 (setq-default TeX-PDF-mode t)
 
+#+END_SRC
+
+* R with ESS
+
+Defines a key binding to open an R terminal and maps "_" (underscore) to " <- ".
+
+#+BEGIN_SRC elisp
 (global-set-key (kbd "C-c r") 'run-ess-r)
 (use-package ess-r-mode
   :bind
@@ -148,9 +196,34 @@
         ("_" . ess-insert-assign))
   (:map inferior-ess-r-mode-map
         ("_" . ess-insert-assign)))
+#+END_SRC
 
+* Other packages
+
+** Elfeed
+
+These create the bindings:
+
+#+BEGIN_SRC elisp
 (global-set-key (kbd "C-x f") 'elfeed)
+#+END_SRC
 
+And sets a couple of RSS feeds for me:
+- *Notícias (News)*
+  - [[www.theguardian.com][Guardian]]
+    - [[https://www.theguardian.com/uk/culture/rss][Guardian Culture]]
+    - [[https://www.theguardian.com/uk/world/americas/rss][Guardian World - Americas]]
+  - [[https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Ffeeds.folha.uol.com.br%2Filustrissima%2Frss091.xml][Folha Ilustríssima]]
+  - [[https://feedly.com/i/subscription/feed%2Fhttp%3A%2F%2Fpiaui.folha.uol.com.br%2Ffeed%2F][Piauí]]
+  - [[https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fwww.nexojornal.com.br%2Frss.xml][Nexo]]
+- *Linguística (Linguistics)*
+  - [[https://linguistlist.org/issues/rss/mostrecent.xml][The Linguist List]]
+  - [[https://www.languagesciences.cam.ac.uk/taxonomy/term/84/feed][Cambridge Linguistic Sciences]]
+  - [[https://www.degruyter.com/journalissuetocrss/journals/indo/indo-overview.xml][Indogermanische Forschungen]]
+  - [[https://www.mitpressjournals.org/action/showFeed?jc=coli&type=etoc&feed=rss][Computational Linguistics (Journal)]]
+  - [[https://indology.info/rss1.xml][Indology]]
+
+#+BEGIN_SRC elisp
 (setq elfeed-feeds
       '(("https://www.theguardian.com/uk/culture/rss" news culture)
         ("https://www.theguardian.com/world/americas/rss" news)
@@ -167,13 +240,21 @@
         ("https://crewsproject.wordpress.com/" philology academic-stuff linguistics)
         ("https://escamandro.wordpress.com/feed" literature others)
         ("https://toujourmicelio.wordpress.com/feed" philosophy others)))
+#+END_SRC
 
+** PIE-MACS
+
+#+BEGIN_SRC elisp
 ;; Custom Input Methods
 (let ((default-directory  "~/.doom.d/lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
 
 (require 'pie-macs)
+#+END_SRC
 
+* Email Configuration
+
+#+BEGIN_SRC elisp
 ;; mu4e config
 (require 'mu4e)
 
@@ -228,3 +309,5 @@
 
 ;; don't keep message buffers around
 (setq message-kill-buffer-on-exit t)
+
+#+END_SRC

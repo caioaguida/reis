@@ -18,7 +18,7 @@ clickable_url = true
 
 [colors]
 # hard contrast: background = #1d2021
-background = rgba(61, 61, 43, 0.9)
+background = rgba(40, 40, 40, 0.85)
 # soft contrast: background = #32302f
 foreground = #ebdbb2
 foreground_bold = #ebdbb2

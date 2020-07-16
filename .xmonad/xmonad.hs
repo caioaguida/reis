@@ -87,6 +87,9 @@ import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
 
+import Colors
+-- import Xmonad.Colors
+
 ------------------------------------------------------------------------
 -- VARIABLES
 ------------------------------------------------------------------------
@@ -118,10 +121,10 @@ myBorderWidth :: Dimension
 myBorderWidth = 2          -- Sets border width for windows
 
 myNormColor :: String
-myNormColor   = "#292d3e"  -- Border color of normal windows
+myNormColor   = Colors.color2  -- Border color of normal windows
 
 myFocusColor :: String
-myFocusColor  = "#bbc5ff"  -- Border color of focused windows
+myFocusColor  = Colors.color6 -- Border color of focused windows
 
 altMask :: KeyMask
 altMask = mod1Mask         -- Setting this for use in xprompts
@@ -134,7 +137,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 ------------------------------------------------------------------------
 myStartupHook :: X ()
 myStartupHook = do
-          spawnOnce "nitrogen --restore &"
+          spawnOnce "wal -i Imagens/wallp/ganesha.png --saturate .6"
           spawnOnce "picom -b --config /etc/xdg/picom.conf &"
           -- spawnOnce "xcompmgr -c &"
           spawnOnce "nm-applet &"
@@ -337,9 +340,9 @@ myTreeNavigation = M.fromList
 dtXPConfig :: XPConfig
 dtXPConfig = def
       { font                = myFont
-      , bgColor             = "#292d3e"
-      , fgColor             = "#d0d0d0"
-      , bgHLight            = "#c792ea"
+      , bgColor             = Colors.color10
+      , fgColor             = Colors.color0
+      , bgHLight            = Colors.color11
       , fgHLight            = "#000000"
       , borderColor         = "#535974"
       , promptBorderWidth   = 0
@@ -671,7 +674,7 @@ myKeys =
         , ("M-S-a", spawn "i3lock -i /home/silenux/Imagens/wallp/massa.png")
 
     -- Floating windows
-        , ("M-f", sendMessage (T.Toggle "floats"))       -- Toggles my 'floats' layout
+        , ("M-f", sendMessage (T.Toggle "filoats"))       -- Toggles my 'floats' layout
         , ("M-<Delete>", withFocused $ windows . W.sink) -- Push floating window back to tile
         , ("M-S-<Delete>", sinkAll)                      -- Push ALL floating windows to tile
 
@@ -768,7 +771,7 @@ myKeys =
         , ("<XF86Mail>", runOrRaise "geary" (resource =? "thunderbird"))
         , ("<XF86Calculator>", runOrRaise "gcalctool" (resource =? "gcalctool"))
         , ("<XF86Eject>", spawn "toggleeject")
-        , ("<Print>", spawn "scrotd 0")
+        , ("<Print>", spawn "i3-scrot")
         , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10")
         , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10")
         ]
@@ -814,13 +817,13 @@ main = do
         , focusedBorderColor = myFocusColor
         , logHook = workspaceHistoryHook <+> myLogHook <+> dynamicLogWithPP xmobarPP
                         { ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x  >> hPutStrLn xmproc2 x
-                        , ppCurrent = xmobarColor "#c3e88d" "" . wrap "[" "]" -- Current workspace in xmobar
-                        , ppVisible = xmobarColor "#c3e88d" ""                -- Visible but not current workspace
-                        , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""   -- Hidden workspaces in xmobar
-                        , ppHiddenNoWindows = xmobarColor "#b3afc2" ""        -- Hidden workspaces (no windows)
-                        , ppTitle = xmobarColor "#ffffff" "" . shorten 60     -- Title of active window in xmobar
+                        , ppCurrent = xmobarColor Colors.color4 "" . wrap "[" "]" -- Current workspace in xmobar
+                        , ppVisible = xmobarColor Colors.color1 ""                -- Visible but not current workspace
+                        , ppHidden = xmobarColor Colors.color3 "" . wrap "*" ""   -- Hidden workspaces in xmobar
+                        , ppHiddenNoWindows = xmobarColor Colors.color7 ""        -- Hidden workspaces (no windows)
+                        , ppTitle = xmobarColor Colors.color14 "" . shorten 60     -- Title of active window in xmobar
                         , ppSep =  "<fc=#666666> | </fc>"                     -- Separators in xmobar
-                        , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"  -- Urgent workspace
+                        , ppUrgent = xmobarColor Colors.color5 "" . wrap "!" "!"  -- Urgent workspace
                         , ppExtras  = [windowCount]                           -- # of windows current workspace
                         , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
                         }

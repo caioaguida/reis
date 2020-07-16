@@ -40,7 +40,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
 Plug 'carlitux/deoplete-ternjs'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'dylanaraps/wal.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'ObserverOfTime/coloresque.vim'
 Plug 'zchee/deoplete-zsh'
@@ -68,8 +69,9 @@ let g:UltiSnipsListSnippets="<c-h>"
 let g:UltiSnipsEditSplit = "tabdo"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 
-let g:gruvbox_italic=1
-colorscheme gruvbox
+" let g:gruvbox_italic=1
+" colorscheme gruvbox
+colorscheme wal
 autocmd VimEnter * hi Normal ctermbg=none
 
 map <C-n> :NERDTreeToggle<CR>
@@ -153,42 +155,6 @@ map <C-n> :NERDTreeToggle<CR>
 
 	""" Específico para vocabulários em LaTeX
 	autocmd FileType tex inoremap ,vocab \entradavoc{<++>}{<++>}{<++>}<Esc>0
-
-
-""" Gerenciador de teclados:
-	" Harvard-Kyoto
-	" so ~/.vim/ie/hk.vim
-	" autocmd FileType tex imap \\hk <Esc>:call ToggleHK()<CR>a
-	" autocmd FileType tex nm \\hk :call ToggleHK()<CR>
-	" " Grego
-	" so ~/.vim/ie/grego.vim
-	" autocmd FileType tex imap \\gr <Esc>:call ToggleGrego()<CR>a
-	" autocmd FileType tex nm \\gr :call ToggleGrego()<CR>
-	" " PIE
-	" so ~/.vim/ie/pie.vim
-	" autocmd FileType tex imap \\pie <Esc>:call TogglePIE()<CR>a
-	" autocmd FileType tex nm \\pie :call TogglePIE()<CR>
-	" " AV
-	" so ~/.vim/ie/av.vim
-	" autocmd FileType tex imap \\av <Esc>:call ToggleAV()<CR>a
-	" autocmd FileType tex nm \\av :call ToggleAV()<CR>
-	" " AVScript
-	" so ~/.vim/ie/avscript.vim
-	" autocmd FileType tex imap \\avs <Esc>:call ToggleAVScript()<CR>a
-	" autocmd FileType tex nm \\avs :call ToggleAVScript()<CR>
-	" " Osco
-	" so ~/.vim/ie/osco.vim
-	" autocmd FileType tex imap \\osc <Esc>:call ToggleOsco()<CR>a
-	" autocmd FileType tex nm \\osc :call ToggleOsco()<CR>
-	" " Hitita
-	" so ~/.vim/ie/hit.vim
-	" autocmd FileType tex imap \\hit <Esc>:call ToggleHitita()<CR>a
-	" autocmd FileType tex nm \\hit :call ToggleHitita()<CR>
-	" " HLuw
-	" so ~/.vim/ie/hluv.vim
-	" autocmd FileType tex imap \\hlu <Esc>:call ToggleHLuw()<CR>a
-	" autocmd FileType tex nm \\hlu :call ToggleHLuw()<CR>
-
 
 """" Python
 	autocmd FileType python map <F5> :w! \| !python %:t <CR>

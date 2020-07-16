@@ -1,16 +1,16 @@
-let g:HKOn=0
+let g:VedicHKOn=0
 
-function! ToggleHK()
-	if !g:HKOn
-		call HK()
+function! ToggleVedicHK()
+	if !g:VedicHKOn
+		call VedicHK()
 	else
-		call HKOff()
+		call VedicHKOff()
 	endif
 endfunction
 
-function! HK()
-	echo "Mapeamento de teclado HK ligado"
-	let g:HKOn=1
+function! VedicHK()
+	echo "Mapeamento de teclado VedicHK ligado"
+	let g:VedicHKOn=1
 	imap a/	á
 	imap i/	í
 	imap u/	ú
@@ -43,9 +43,9 @@ function! HK()
 	imap &	m̐
 endfunction
 
-function! HKOff()
-	let g:HKOn=0
-	echo "Mapeamento de teclado HK desligado"
+function! VedicHKOff()
+	let g:VedicHKOn=0
+	echo "Mapeamento de teclado VedicHK desligado"
 	iunmap a/
 	iunmap i/
 	iunmap u/

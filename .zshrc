@@ -37,30 +37,18 @@ bindkey "\e[3~" delete-char
 alias vim="nvim"
 alias ls="ls --group-directories-first --color"
 alias nlp="pyenv activate nlp"
+# alias neofetch="neofetch --disable Theme Icons WM"
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 export PYENV_ROOT="$HOME/.pyenv"
 export EDITOR="/bin/nvim"
-export PATH="$PYENV_ROOT/bin:$PATH:/home/silenux/.treetag/cmd:/home/silenux/.treetag/bin:/home/silenux/.anaconda3/bin/"
+export SHELL="/bin/zsh"
+export PATH="$PYENV_ROOT/bin:$PATH:/home/silenux/.treetag/cmd:/home/silenux/.treetag/bin:/home/silenux/.local/bin:/home/silenux/.anaconda3/bin/"
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
 eval "$(pyenv virtualenv-init -)"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=0
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/silenux/.anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/silenux/.anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/silenux/.anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/silenux/.anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 

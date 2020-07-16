@@ -12,46 +12,36 @@
 allow_bold = true
 # geometry = 700x520
 # font = DejaVu Sans Mono 12
-font = DroidSansMono Nerd Font 12
+font = NotoSansMono Nerd Font 11
 scrollback_lines = 5000
 clickable_url = true
 
 [colors]
 # hard contrast: background = #1d2021
-background = rgba(40, 40, 40, 0.85)
+# background = rgba(40, 40, 40, 0.85)
 # soft contrast: background = #32302f
-foreground = #ebdbb2
-foreground_bold = #ebdbb2
-alpha = 0.95
+# foreground = #ebdbb2
+# foreground_bold = #ebdbb2
+#
+background = rgba(59, 56, 48, 0.85)
+foreground='#dddbc9'
+cursor='#dddbc9'
 
-# dark0 + gray
-color0 = #282828
-color8 = #928374
+# Colors
+color0=#3b3830
+color1=#d2894e
+color2=#d6835f
+color3=#d9a96a
+color4=#b6da6d
+color5=#de9b7f
+color6=#cee28e
+color7=#dddbc9
+color8=#9a998c
+color9=#d2894e
+color10=#d6835f
+color11=#d9a96a
+color12=#b6da6d
+color13=#de9b7f
+color14=#cee28e
+color15=#dddbc9
 
-# neutral_red + bright_red
-color1 = #cc241d
-color9 = #fb4934
-
-# neutral_green + bright_green
-color2 = #98971a
-color10 = #b8bb26
-
-# neutral_yellow + bright_yellow
-color3 = #d79921
-color11 = #fabd2f
-
-# neutral_blue + bright_blue
-color4 = #458588
-color12 = #83a598
-
-# neutral_purple + bright_purple
-color5 = #b16286
-color13 = #d3869b
-
-# neutral_aqua + faded_aqua
-color6 = #689d6a
-color14 = #8ec07c
-
-# light4 + light1
-color7 = #a89984
-color15 = #ebdbb2

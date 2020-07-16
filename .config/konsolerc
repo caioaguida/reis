@@ -6,16 +6,16 @@ Height 768=438
 Width 1366=700
 
 [Favorite Profiles]
-Favorites=Vivendo.profile,Gruv.profile,Programando.profile
+Favorites=Gruv.profile,Vivendo.profile,Programando.profile
 
 [KonsoleWindow]
 ShowMenuBarByDefault=false
 
 [MainWindow]
 Height 1080=1030
-Height 768=744
+Height 768=708
 MenuBar=Disabled
 State=AAAA/wAAAAD9AAAAAAAAApYAAALOAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
-Width 1366=1366
+Width 1366=655
 Width 1920=939

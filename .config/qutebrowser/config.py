@@ -755,6 +755,7 @@ c.content.host_blocking.enabled = True
 ## exists.
 ## Type: List of Url
 c.content.host_blocking.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
+        # 'https://raw.githubusercontent.com/hl2guide/All-in-One-Customized-Adblock-List/master/aio.txt']
 
 ## A list of patterns that should always be loaded, despite being ad-
 ## blocked. Note this whitelists blocked hosts, not first-party URLs. As

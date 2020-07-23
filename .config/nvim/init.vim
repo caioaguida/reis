@@ -18,6 +18,7 @@ set splitright
 set foldenable
 set foldlevelstart=10
 set foldnestmax=10
+set encoding=utf8
 
 set wildmenu
 set wildmode=full
@@ -27,34 +28,42 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 "Plugin
 call plug#begin('~/.vim/plugged')
-Plug 'caioaguida/pievim'
-Plug 'lervag/vimtex'
-Plug 'ryanoasis/vim-devicons'
-Plug 'junegunn/goyo.vim'
-Plug 'SirVer/ultisnips'
-Plug 'noahfrederick/vim-skeleton'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-commentary'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
-Plug 'carlitux/deoplete-ternjs'
-" Plug 'morhetz/gruvbox'
-Plug 'dylanaraps/wal.vim'
-Plug 'vim-syntastic/syntastic'
-Plug 'ObserverOfTime/coloresque.vim'
-Plug 'zchee/deoplete-zsh'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-pandoc/vim-rmarkdown'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'scrooloose/nerdtree'
-
+    Plug 'gmarik/Vundle.vim'                           " Vundle
+    Plug 'frazrepo/vim-rainbow'
+    Plug 'caioaguida/pievim'
+    Plug 'SirVer/ultisnips'
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-commentary'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'vim-syntastic/syntastic'
+    Plug 'vim-airline/vim-airline'
+    Plug 'lervag/vimtex'
+    Plug 'vim-pandoc/vim-rmarkdown'
+    Plug 'vim-pandoc/vim-pandoc-syntax'
+    Plug 'vim-pandoc/vim-pandoc'
+    Plug 'preservim/nerdtree'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'lilydjwg/colorizer'
+    Plug 'gko/vim-coloresque'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'dylanaraps/wal.vim'
 call plug#end()
 
 
 "" Configuração de plugins
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Ignored"   : "☒",
+    \ "Unknown"   : "?"
+    \ }
 
 let g:tex_flavor = 'latex'
 let g:vimtex_compiler_progname = 'nvr'
@@ -69,12 +78,21 @@ let g:UltiSnipsListSnippets="<c-h>"
 let g:UltiSnipsEditSplit = "tabdo"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 
+
+
+
 " let g:gruvbox_italic=1
 " colorscheme gruvbox
 colorscheme wal
 autocmd VimEnter * hi Normal ctermbg=none
 
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeShowLineNumbers=1
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI = 1
+let g:NERDTreeWinSize=25
+
+
 
 " Salva mão
 	map <C-h> <C-w>h
@@ -96,7 +114,8 @@ map <C-n> :NERDTreeToggle<CR>
     " }}}
     
 " Spell
-    :set spell spelllang=pt,en,de,fr
+    " autocmd FileType tex :set spell spelllang=pt,en,de,fr
+    set spelllang=en,de,fr
 
 "---Navigating with guides
 	inoremap <Space><Tab> <Esc>/<++><Enter>"_c4l

@@ -137,7 +137,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 ------------------------------------------------------------------------
 myStartupHook :: X ()
 myStartupHook = do
-          spawnOnce "wal -i Imagens/wallp/ganesha.png --saturate .6"
+          spawnOnce "wal -i Imagens/wallp/SK-A-668.jpg --saturate .5"
           spawnOnce "picom -b --config /etc/xdg/picom.conf &"
           -- spawnOnce "xcompmgr -c &"
           spawnOnce "nm-applet &"
@@ -794,8 +794,8 @@ main :: IO ()
 main = do
     -- Launching three instances of xmobar on their monitors.
     xmproc0 <- spawnPipe "xmobar -x 0 /home/silenux/.config/xmobar/xmobarrc0"
-    xmproc1 <- spawnPipe "xmobar -x 1 /home/silenux/.config/xmobar/xmobarrc2"
-    xmproc2 <- spawnPipe "xmobar -x 2 /home/silenux/.config/xmobar/xmobarrc1"
+    -- xmproc1 <- spawnPipe "xmobar -x 1 /home/silenux/.config/xmobar/xmobarrc2"
+    -- xmproc2 <- spawnPipe "xmobar -x 2 /home/silenux/.config/xmobar/xmobarrc1"
     -- the xmonad, ya know...what the WM is named after!
     xmonad $ ewmh def
         { manageHook = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageDocks
@@ -816,8 +816,8 @@ main = do
         , normalBorderColor  = myNormColor
         , focusedBorderColor = myFocusColor
         , logHook = workspaceHistoryHook <+> myLogHook <+> dynamicLogWithPP xmobarPP
-                        { ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x  >> hPutStrLn xmproc2 x
-                        , ppCurrent = xmobarColor Colors.color4 "" . wrap "[" "]" -- Current workspace in xmobar
+                        { ppOutput = \x -> hPutStrLn xmproc0 x  -- >> hPutStrLn xmproc1 x  >> hPutStrLn xmproc2 x
+                        , ppCurrent = xmobarColor Colors.color14 "" . wrap "[" "]" -- Current workspace in xmobar
                         , ppVisible = xmobarColor Colors.color1 ""                -- Visible but not current workspace
                         , ppHidden = xmobarColor Colors.color3 "" . wrap "*" ""   -- Hidden workspaces in xmobar
                         , ppHiddenNoWindows = xmobarColor Colors.color7 ""        -- Hidden workspaces (no windows)

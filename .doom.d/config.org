@@ -227,8 +227,8 @@ And sets a couple of RSS feeds for me:
 (setq elfeed-feeds
       '(("https://www.theguardian.com/uk/culture/rss" news culture)
         ("https://www.theguardian.com/world/americas/rss" news)
-        ("https://feedly.com/i/subscription/feed%2Fhttp%3A%2F%2Fpiaui.folha.uol.com.br%2Ffeed%2F" news brasil)
-        ("https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fwww.nexojornal.com.br%2Frss.xml" news brasil)
+        ("https://feedly.com/i/subscription/feed/https://piaui.folha.uol.com.br/feed" news)
+        ("https://feedly.com/i/subscription/feed/https://www.nexojornal.com.br/feed" news)
         ("https://linguistlist.org/issues/rss/mostrecent.xml" linguistics)
         ("https://www.languagesciences.cam.ac.uk/taxonomy/term/84/feed" linguistics)
         ("https://www.degruyter.com/journalissuetocrss/journals/indo/indo-overview.xml" linguistics philology academic-stuff)

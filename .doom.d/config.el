@@ -154,8 +154,8 @@
 (setq elfeed-feeds
       '(("https://www.theguardian.com/uk/culture/rss" news culture)
         ("https://www.theguardian.com/world/americas/rss" news)
-        ("https://feedly.com/i/subscription/feed%2Fhttp%3A%2F%2Fpiaui.folha.uol.com.br%2Ffeed%2F" news brasil)
-        ("https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fwww.nexojornal.com.br%2Frss.xml" news brasil)
+        ("https://feedly.com/i/subscription/feed/https://piaui.folha.uol.com.br/feed" news)
+        ("https://feedly.com/i/subscription/feed/https://www.nexojornal.com.br/feed" news)
         ("https://linguistlist.org/issues/rss/mostrecent.xml" linguistics)
         ("https://www.languagesciences.cam.ac.uk/taxonomy/term/84/feed" linguistics)
         ("https://www.degruyter.com/journalissuetocrss/journals/indo/indo-overview.xml" linguistics philology academic-stuff)
@@ -234,6 +234,24 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default-input-method "portuguese-prefix")
+ '(elfeed-feeds
+   (quote
+    ("https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fwww.nexojornal.com.br%2Frss.xml"
+     ("https://www.theguardian.com/uk/culture/rss" news culture)
+     ("https://www.theguardian.com/world/americas/rss" news)
+     ("https://feedly.com/i/subscription/feed/https://piaui.folha.uol.com.br/feed" news)
+     ("https://feedly.com/i/subscription/feed/https://www.nexojornal.com.br/feed" news)
+     ("https://linguistlist.org/issues/rss/mostrecent.xml" linguistics)
+     ("https://www.languagesciences.cam.ac.uk/taxonomy/term/84/feed" linguistics)
+     ("https://www.degruyter.com/journalissuetocrss/journals/indo/indo-overview.xml" linguistics philology academic-stuff)
+     ("https://www.mitpressjournals.org/action/showFeed?jc=coli&type=etoc&feed=rss" linguistics)
+     ("https://www.oxfordscholarship.com/newsrss" academic-stuff)
+     ("https://blog.philsoc.org.uk/feed" philology linguistics academic-stuff)
+     ("https://indology.info/rss1.xml" linguistics indology philology academic-stuff)
+     ("https://consultingphilologist.wordpress.com/" philology academic-stuff linguistics)
+     ("https://crewsproject.wordpress.com/" philology academic-stuff linguistics)
+     ("https://escamandro.wordpress.com/feed" literature others)
+     ("https://toujourmicelio.wordpress.com/feed" philosophy others))))
  '(package-selected-packages
    (quote
     (ewal-evil-cursors ewal-doom-themes xresources-theme doom-themes))))

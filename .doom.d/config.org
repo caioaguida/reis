@@ -44,33 +44,29 @@ The configuration bellow intends to present a workspace for a historical linguis
         (lambda (frame)
             (with-selected-frame frame
             (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
-            (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
-                (load-theme 'doom-gruvbox t))))
-    (load-theme 'doom-gruvbox t))
+            (add-to-list 'default-frame-alist '(alpha . (90 . 90)))))))
 
-  ;; There are two ways to load a theme. Both assume the theme is installed and
-  ;; available. You can either set `doom-theme' or manually load a theme with the
-  ;; `load-theme' function. This is the default:
-  (use-package doom-themes
-  :config
-  ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-gruvbox t)
+(use-package ewal
+  :init (setq ewal-use-built-in-always-p nil
+              ewal-use-built-in-on-failure-p t
+              ewal-built-in-palette "gruvbox"
+              ewal-json-file "/home/silenux/.cache/wal"))
+(use-package ewal-doom-themes
+  :init (progn
+          (setq doom-theme-underline-parens t
+                my:rice:font (font-spec
+                              :family "NotoSansMono Nerd Font"
+                              :weight 'semi-bold
+                              :size 11.0))
+          (show-paren-mode +1)
+          (global-hl-line-mode)
+          (set-frame-font my:rice:font nil t)
+          (add-to-list  'default-frame-alist
+                        `(font . ,(font-xlfd-name my:rice:font))))
+    :config (progn
+            (load-theme   'ewal-doom-vibrant t)
+            (enable-theme 'ewal-doom-vibrant)))
 
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
-
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  (doom-themes-neotree-config)
-
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config))
-
-  ;; Background transparency and color
-  (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
-  (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
-  (put 'customize-themes 'disabled nil)
  (defun toggle-transparency ()
    (interactive)
    (let ((alpha (frame-parameter nil 'alpha)))
@@ -81,30 +77,9 @@ The configuration bellow intends to present a workspace for a historical linguis
                      ;; Also handle undocumented (<active> <inactive>) form.
                      ((numberp (cadr alpha)) (cadr alpha)))
                100)
-          '(90 . 90) '(100 . 100)))))
+          '(95 . 50) '(100 . 100)))))
  (global-set-key (kbd "C-c t") 'toggle-transparency)
-  ;; This determines the style of line numbers in effect. If set to `nil', line
-  ;; numbers are disabled. For relative line numbers, set this to `relative'.
-  (setq display-line-numbers-type 'relative)
 
-#+END_SRC
-
-* Org-mode
-
-#+BEGIN_SRC elisp
-
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/.org/")
-
-(setq org-roam-directory "~/.org/org-roam")
-
-(setq org-export-coding-system 'utf-8)
-(setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tarefas")
-         "* TODO %?\n  %i\n  %a")
-        ("j" "Journal" entry (file+datetree "~/org/journal.org")
-         "* %?\nEntered on %U\n  %i\n  %a")))
 #+END_SRC
 
 * Custom Variables

@@ -38,9 +38,6 @@
 
   ;; Enable custom neotree theme (all-the-icons must be installed!)
   (doom-themes-neotree-config)
-  ;; or for treemacs users
-  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
-  (doom-themes-treemacs-config)
 
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
@@ -228,36 +225,31 @@
 
 ;; don't keep message buffers around
 (setq message-kill-buffer-on-exit t)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default-input-method "portuguese-prefix")
- '(elfeed-feeds
-   (quote
-    ("https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fwww.nexojornal.com.br%2Frss.xml"
-     ("https://www.theguardian.com/uk/culture/rss" news culture)
-     ("https://www.theguardian.com/world/americas/rss" news)
-     ("https://feedly.com/i/subscription/feed/https://piaui.folha.uol.com.br/feed" news)
-     ("https://feedly.com/i/subscription/feed/https://www.nexojornal.com.br/feed" news)
-     ("https://linguistlist.org/issues/rss/mostrecent.xml" linguistics)
-     ("https://www.languagesciences.cam.ac.uk/taxonomy/term/84/feed" linguistics)
-     ("https://www.degruyter.com/journalissuetocrss/journals/indo/indo-overview.xml" linguistics philology academic-stuff)
-     ("https://www.mitpressjournals.org/action/showFeed?jc=coli&type=etoc&feed=rss" linguistics)
-     ("https://www.oxfordscholarship.com/newsrss" academic-stuff)
-     ("https://blog.philsoc.org.uk/feed" philology linguistics academic-stuff)
-     ("https://indology.info/rss1.xml" linguistics indology philology academic-stuff)
-     ("https://consultingphilologist.wordpress.com/" philology academic-stuff linguistics)
-     ("https://crewsproject.wordpress.com/" philology academic-stuff linguistics)
-     ("https://escamandro.wordpress.com/feed" literature others)
-     ("https://toujourmicelio.wordpress.com/feed" philosophy others))))
- '(package-selected-packages
-   (quote
-    (ewal-evil-cursors ewal-doom-themes xresources-theme doom-themes))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight semi-bold :height 113 :width normal)))))
+
+;; overwrite the default hidden file filter, so it uses .gitignore
+        (defun neo-util--hidden-path-filter (node)
+            "it reads each nodule on the list, and determines if its ignored by git."
+            (if neo-buffer--show-hidden-file-p
+                ;; all files should be shown
+                node
+                ;; hiding is enabled, use git check-ignore to determeine which to show
+                (if
+                    ;; if the output is empty (file should be shown) return the node
+                    (string=
+                        (string-trim
+                            (shell-command-to-string
+                                (format
+                                    "git -C %s check-ignore %s"
+                                    (file-name-directory node)
+                                    node
+                                )
+                            )
+                        )
+                        ""
+                    )
+                    node
+                    ;; git outputed something, file shold be hidden
+                    nil
+                )
+            )
+        )

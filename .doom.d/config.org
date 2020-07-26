@@ -63,9 +63,6 @@ The configuration bellow intends to present a workspace for a historical linguis
 
   ;; Enable custom neotree theme (all-the-icons must be installed!)
   (doom-themes-neotree-config)
-  ;; or for treemacs users
-  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
-  (doom-themes-treemacs-config)
 
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
@@ -198,6 +195,36 @@ Defines a key binding to open an R terminal and maps "_" (underscore) to " <- ".
         ("_" . ess-insert-assign)))
 #+END_SRC
 
+* Neotree
+#+begin_src emacs-lisp
+;; overwrite the default hidden file filter, so it uses .gitignore
+        (defun neo-util--hidden-path-filter (node)
+            "it reads each nodule on the list, and determines if its ignored by git."
+            (if neo-buffer--show-hidden-file-p
+                ;; all files should be shown
+                node
+                ;; hiding is enabled, use git check-ignore to determeine which to show
+                (if
+                    ;; if the output is empty (file should be shown) return the node
+                    (string=
+                        (string-trim
+                            (shell-command-to-string
+                                (format
+                                    "git -C %s check-ignore %s"
+                                    (file-name-directory node)
+                                    node
+                                )
+                            )
+                        )
+                        ""
+                    )
+                    node
+                    ;; git outputed something, file shold be hidden
+                    nil
+                )
+            )
+        )
+#+end_src
 * Other packages
 
 ** Elfeed

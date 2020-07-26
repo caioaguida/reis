@@ -17,6 +17,7 @@
 (package! auto-complete)
 ;; (package! mu4e)
 (package! unicode-fonts)
+(package! ewal)
 
 
 ;; To install a package directly from a remote git repo, you must specify a

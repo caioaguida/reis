@@ -1,0 +1,1 @@
+/home/silenux/.cache/wal/colors.hs

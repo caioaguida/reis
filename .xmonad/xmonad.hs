@@ -242,6 +242,7 @@ myMainBooks = [ ("Cambridge Greek Grammar", myPDFER ++ "/home/silenux/Documentos
               , ("EWA", "tabbed -c " ++ myPDFER ++ "/home/silenux/Documentos/Línguas/Indo-Europeias/Védico/ewa/I*.pdf -e", "Mayrhofer, M. Etymologisches Wörterbuch des Altindoarischen")
               , ("LIV",  myPDFER ++ "/home/silenux/Documentos/Línguas/Indo-Europeias/Dicionários/LIV2.pdf", "Rix, H. Lexikon der indogermanischen Verben")
               , ("NIL",  myPDFER ++ "/home/silenux/Documentos/Línguas/Indo-Europeias/Dicionários/NIL.pdf", "Wodtko, D. Nomina im indogermanischen Lexicon")
+              , ("Lancelot 1658",  myPDFER ++ "'/home/silenux/Documentos/pdfs/linghist/Lancelot - Nouvelle Methode - Langue Grecque - 1658.pdf'", "Lancelot, C. Methode Grecque. 1658")
               ]
 
 -- Let's take myApplications, myBookmarks and myConfigs and take only

@@ -48,6 +48,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'gko/vim-coloresque'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'dylanaraps/wal.vim'
+    Plug 'chrisbra/csv.vim'
 call plug#end()
 
 
@@ -115,7 +116,7 @@ let g:NERDTreeWinSize=25
     
 " Spell
     " autocmd FileType tex :set spell spelllang=pt,en,de,fr
-    set spelllang=en,de,fr
+    set spell spelllang=en,de,fr
 
 "---Navigating with guides
 	inoremap <Space><Tab> <Esc>/<++><Enter>"_c4l

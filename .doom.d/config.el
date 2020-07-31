@@ -1,3 +1,31 @@
+;; overwrite the default hidden file filter, so it uses .gitignore
+        (defun neo-util--hidden-path-filter (node)
+            "it reads each nodule on the list, and determines if its ignored by git."
+            (if neo-buffer--show-hidden-file-p
+                ;; all files should be shown
+                node
+                ;; hiding is enabled, use git check-ignore to determeine which to show
+                (if
+                    ;; if the output is empty (file should be shown) return the node
+                    (string=
+                        (string-trim
+                            (shell-command-to-string
+                                (format
+                                    "git -C %s check-ignore %s"
+                                    (file-name-directory node)
+                                    node
+                                )
+                            )
+                        )
+                        ""
+                    )
+                    node
+                    ;; git outputed something, file shold be hidden
+                    nil
+                )
+            )
+        )
+
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Caio Borges Aguida Geraldes"
@@ -21,6 +49,7 @@
             (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
             (add-to-list 'default-frame-alist '(alpha . (90 . 90)))))))
 
+(set-face-attribute 'flycheck-error nil :underline '(:color "Red" :style wave))
 (use-package ewal
   :init (setq ewal-use-built-in-always-p nil
               ewal-use-built-in-on-failure-p t
@@ -205,31 +234,3 @@
 
 ;; don't keep message buffers around
 (setq message-kill-buffer-on-exit t)
-
-;; overwrite the default hidden file filter, so it uses .gitignore
-        (defun neo-util--hidden-path-filter (node)
-            "it reads each nodule on the list, and determines if its ignored by git."
-            (if neo-buffer--show-hidden-file-p
-                ;; all files should be shown
-                node
-                ;; hiding is enabled, use git check-ignore to determeine which to show
-                (if
-                    ;; if the output is empty (file should be shown) return the node
-                    (string=
-                        (string-trim
-                            (shell-command-to-string
-                                (format
-                                    "git -C %s check-ignore %s"
-                                    (file-name-directory node)
-                                    node
-                                )
-                            )
-                        )
-                        ""
-                    )
-                    node
-                    ;; git outputed something, file shold be hidden
-                    nil
-                )
-            )
-        )
